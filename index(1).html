@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Be My Valentine</title>
+    <link rel="stylesheet" href="css/valentine.css" />
+  </head>
+  <body>
+    <div id="valentineQuestion"><b>Will you be my valentine?</b></div>
+    <button class="answerButton" onclick="location.href='thankyou.html'">
+      Yes
+    </button>
+    <button class="answerButton" id="noButton">No o(╥﹏╥)o</button>
+    <br />
+    <img src="please.png" height="498px" width="150px" alt="cat asking question" class="responsive" />
+    <script>
+      let noClickCount = 0;
+      const maxClicks = 35;
+
+      const noButton = document.getElementById("noButton");
+      const yesButton = document.querySelector(
+        'button[onclick*="thankyou.html"]'
+      );
+
+      noButton.addEventListener("click", function () {
+        if (noClickCount >= maxClicks) return;
+
+        noClickCount++;
+
+        // Perbesar tombol Yes
+        const currentFontSize = parseInt(
+          window.getComputedStyle(yesButton).fontSize
+        );
+        yesButton.style.fontSize = currentFontSize + 10 + "px";
+
+        // Setelah 10 kali klik No
+        if (noClickCount === maxClicks) {
+          alert("SAYAAAANGGG!!! KAMU JAHAT BANGETT IHHH! 😤💖 Game over, sekarang ga bisa klik No! KLIK YES-NYA AAYY!! 😤😤😤");
+
+          // Matikan tombol No
+          noButton.disabled = true;
+          noButton.style.opacity = "0.5";
+          noButton.style.cursor = "not-allowed";
+
+          // Fokus ke Yes
+          yesButton.style.cursor = "pointer";
+          yesButton.style.boxShadow = "0 0 20px pink";
+        }
+      });
+    </script>
+  </body>
+</html>
